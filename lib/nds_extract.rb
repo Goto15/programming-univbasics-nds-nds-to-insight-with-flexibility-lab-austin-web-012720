@@ -1,5 +1,6 @@
 # Provided, don't edit
 require 'directors_database'
+require 'pp'
 
 # A method we're giving you. This "flattens"  Arrays of Arrays so: [[1,2],
 # [3,4,5], [6]] => [1,2,3,4,5,6].
@@ -66,6 +67,21 @@ def gross_per_studio(collection)
 end
 
 def movies_with_directors_set(source)
+  
+  director_movies = []
+  
+  for each in source do
+    temp_movies = []
+    director = each[:name]
+    for movie in each[:movies] do 
+      movie[:director_name] = director
+      temp_movies.push(movie)
+    end
+    director_movies.push(temp_movies)
+  end
+  
+  pp director_movies
+  return director_movies
   # GOAL: For each director, find their :movies Array and stick it in a new Array
   #
   # INPUT:
